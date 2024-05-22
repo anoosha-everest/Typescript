@@ -31,7 +31,8 @@ var student1 = {
     }
 };
 console.log(student1.age);
-console.log(student1.address.state);
+console.log(student1.address);
+console.log(student1);
 function sum(num1, num2) {
     if (num2 != undefined) {
         return num1 + num2;
@@ -61,13 +62,31 @@ var Student = /** @class */ (function (_super) {
         return _this;
     }
     Student.prototype.getDetails = function () {
-        return "student name is " + this.name + ",age is " + this.age + ",email is " + this.email + ". Interested courses are " + this.course + ". Address is " + this.city + " city," + this.state + " state," + this.pincode;
+        return "Student name is " + this.name + ",age is " + this.age + ",email is " + this.email + ". Interested courses are " + this.course + ". Address is " + this.city + " city," + this.state + " state," + this.pincode;
     };
     return Student;
 }(Addres));
 var s1 = new Student("Anoosha", 21, "anooshasanugula@gmail.com", ["HTML", "CSS", "Typescript"], "Vemulawada", "Telangana", 505307);
 console.log(s1.getDetails());
+//importing getValue function from the utils
 console.log((0, utils_1.getValue)("Goldie"));
 console.log((0, utils_1.getValue)(123));
 console.log((0, utils_1.getValue)([12, 23, 34]));
 console.log((0, utils_1.getValue)(["anu", "surya", "tunnu"]));
+var C = /** @class */ (function () {
+    function C(a, b) {
+    }
+    return C;
+}());
+var B = /** @class */ (function () {
+    function B() {
+        this.name = "Goldie";
+        this.id = 1221;
+    }
+    return B;
+}());
+var fruits = {
+    Apple: { vitamin: "A", colour: "red" },
+    Banana: { vitamin: "E", colour: "yellow" },
+    Kiwi: { vitamin: "D", colour: "green" }
+};

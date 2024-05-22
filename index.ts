@@ -1,4 +1,3 @@
-
 //Day-1 assignment
 let st="anu";
 let s:string="hello";
@@ -33,8 +32,8 @@ let student1:Students={
 }
 
 console.log(student1.age);
-console.log(student1.address.state);
-
+console.log(student1.address);
+console.log(student1);
 
 
 function sum(num1:number,num2?:number):number{
@@ -49,7 +48,8 @@ function sum(num1:number,num2?:number):number{
 
 
  //Day-2 assignment
- import { getValue } from './utils';
+ 
+import { getValue } from './utils';
 
 class Addres{
     public city:string;
@@ -75,7 +75,7 @@ class Student extends Addres{
         
     }
     getDetails():string{
-        return "student name is "+this.name+",age is "+this.age+",email is "+this.email+". Interested courses are "+this.course+". Address is "+this.city+" city,"+this.state+" state,"+this.pincode;
+        return "Student name is "+this.name+",age is "+this.age+",email is "+this.email+". Interested courses are "+this.course+". Address is "+this.city+" city,"+this.state+" state,"+this.pincode;
     }
 }
 
@@ -83,7 +83,7 @@ const s1=new Student("Anoosha",21,"anooshasanugula@gmail.com",["HTML","CSS","Typ
 console.log(s1.getDetails());
 
 
-
+//importing getValue function from the utils
 console.log(getValue("Goldie"));
 console.log(getValue(123));
 console.log(getValue([12,23,34]));
@@ -111,6 +111,8 @@ interface Addr{
 type createMap1<Type>={
     [p in keyof Type]:string;
 }
+
+
 type details=createMap1<Addr>; //mapping
 type partial=Partial<Addr>;
 type reonly=Readonly<Studentt>;
@@ -119,6 +121,21 @@ type pik=Pick<Addr,"pincode" | "name">
 type omit=Omit<Addr,"city" | "state">
 type exclu=Exclude<Studentt | Addr,Addr>
 type extr=Extract<Studentt,{name:"string"}>
+type nonNull=NonNullable<number|string|undefined|null>
+type param=Parameters<(s:string)=>void>
+type param1=Parameters<<T>(arg:T)=>T>
+class C {
+    constructor(a: number, b: string) {}
+}
+type T3 = ConstructorParameters<typeof C>;
+type constrpar=ConstructorParameters<typeof Addres>;
+type ret=ReturnType<()=>string>
+type ret1=ReturnType<<T>()=>T>
+class B{
+    name="Goldie"
+    id=1221
+}
+type instanceType=InstanceType<typeof B>
 
 interface Fruit{
     vitamin:string;
