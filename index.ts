@@ -149,3 +149,111 @@ const fruits:Record<FruitName, Fruit>={
     Banana:{vitamin:"E",colour:"yellow"},
     Kiwi:{vitamin:"D",colour:"green"}
 };
+
+
+//Day-4 assignment 
+
+/*type Students={
+    name:string;
+    age:number;
+    email:string;
+    course:string[];
+    address:Address;
+
+}
+type Address={
+    city:string;
+    state:string;
+    pincode:number;
+}*/
+type few_prop=Pick<Students,"email" | "name">
+
+let st1:Students={
+    name:"Anoosha",
+    age:21,
+    email:"anoosha@gmail.com",
+    course:["maths","english"],
+    address:{
+        city:"sircilla",
+        state:"telangana",
+        pincode:505307
+    }
+}
+
+let st_few1:few_prop={
+    email:"goldie@gmail.com",
+    name:"goldie"
+}
+
+function update_few(st_few1:few_prop,st1:Students):Students{
+    for (const update in st1) {
+        const key = update as keyof few_prop;
+        if(st_few1[key]!=undefined)
+            st1[key] = st_few1[key];
+    }
+    return st1;
+}
+
+console.log(update_few(st_few1,st1));
+
+type type_check<T> = T extends string ?"Yes" : "No";
+let checking:type_check<string>;
+let check:type_check<number>;
+
+  type Employee ={
+    name: string;
+    age:number;
+    lead?: Employee;
+  }
+let Employees:Employee[]=[];
+  const emp1:Employee={
+    name:"Goldie",
+    age:21
+  };
+  const lead1:Employee={
+    name:"Ranga",
+    age:30
+  };
+  emp1.lead=lead1;
+  const lead2:Employee={
+    name:"Chandu",
+    age:30
+  };
+  const emp2:Employee={
+    name:"Jamuna",
+    age:20,
+    lead:lead2
+  };
+  
+  const emp3:Employee={
+    name:"Hari",
+    age:23
+  };
+  const emp4:Employee={
+    name:"Soujanya",
+    age:20
+  };
+  const lead4:Employee={
+    name:"Soujanya",
+    age:20
+  };
+  emp4.lead=lead4;
+  Employees.push(emp1);
+  Employees.push(emp2);
+  Employees.push(emp3);
+  Employees.push(emp4);
+console.log(Employees);
+
+Employees.forEach(emp=>{
+    if((emp.lead!=undefined)){
+        if(emp.lead.name==emp.name){
+            console.log(emp.name+" is lead");
+        }
+        else{
+            console.log(emp.name+" is not lead");
+        }
+    }
+    else{
+        console.log(emp.name+" is not lead");
+    }
+});

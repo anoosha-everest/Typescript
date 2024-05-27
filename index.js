@@ -69,7 +69,7 @@ console.log(s1.getDetails());
 //importing getValue function from the utils
 var stringtype = { value: "Goldie" };
 var numtype = { value: 123 };
-var arraytype = { value: [1, 2, 3, 4] };
+var arraytype = { value: [21, 22, 23, 24] };
 console.log(stringtype);
 console.log(numtype);
 console.log(arraytype);
@@ -90,3 +90,85 @@ var fruits = {
     Banana: { vitamin: "E", colour: "yellow" },
     Kiwi: { vitamin: "D", colour: "green" }
 };
+var st1 = {
+    name: "Anoosha",
+    age: 21,
+    email: "anoosha@gmail.com",
+    course: ["maths", "english"],
+    address: {
+        city: "sircilla",
+        state: "telangana",
+        pincode: 505307
+    }
+};
+var st_few1 = {
+    email: "goldie@gmail.com",
+    name: "goldie"
+};
+function update_few(st_few1, st1) {
+    for (var update in st1) {
+        var key = update;
+        if (st_few1[key] != undefined)
+            st1[key] = st_few1[key];
+    }
+    return st1;
+}
+console.log(update_few(st_few1, st1));
+var any_type = "anoosha";
+function check_type(input) {
+    if (typeof input === "string") {
+        return "Yes";
+    }
+    return "No";
+}
+console.log(check_type(any_type));
+var Employees = [];
+var emp1 = {
+    name: "Goldie",
+    age: 21
+};
+var lead1 = {
+    name: "Ranga",
+    age: 30
+};
+emp1.lead = lead1;
+var emp2 = {
+    name: "Jamuna",
+    age: 20
+};
+var lead2 = {
+    name: "Chandu",
+    age: 30
+};
+emp2.lead = lead2;
+var emp3 = {
+    name: "Hari",
+    age: 23
+};
+var emp4 = {
+    name: "Soujanya",
+    age: 20
+};
+var lead4 = {
+    name: "Soujanya",
+    age: 20
+};
+emp4.lead = lead4;
+Employees.push(emp1);
+Employees.push(emp2);
+Employees.push(emp3);
+Employees.push(emp4);
+console.log(Employees);
+Employees.forEach(function (emp) {
+    if ((emp.lead != undefined)) {
+        if (emp.lead.name == emp.name) {
+            console.log(emp.name + " is lead");
+        }
+        else {
+            console.log(emp.name + " is not lead");
+        }
+    }
+    else {
+        console.log(emp.name + " is not lead");
+    }
+});
