@@ -84,10 +84,12 @@ console.log(s1.getDetails());
 
 
 //importing getValue function from the utils
-console.log(getValue("Goldie"));
-console.log(getValue(123));
-console.log(getValue([12,23,34]));
-console.log(getValue(["anu","surya","tunnu"]));
+const stringtype:getValue<string>={value:"Goldie"};
+const numtype:getValue<number>={value:123};
+const arraytype:getValue<number[]>={value:[21,22,23,24]};
+console.log(stringtype);
+console.log(numtype);
+console.log(arraytype);
 
 
 interface Studentt{

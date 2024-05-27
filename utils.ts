@@ -1,3 +1,3 @@
-export function getValue<T>(value:T){
-    return value;
+export type getValue<T>={
+    value:T;
 }

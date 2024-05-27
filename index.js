@@ -41,8 +41,6 @@ function sum(num1, num2) {
 }
 var a = sum(2, 5);
 console.log(a);
-//Day-2 assignment
-var utils_1 = require("./utils");
 var Addres = /** @class */ (function () {
     function Addres(city, state, pincode) {
         this.city = city;
@@ -69,10 +67,12 @@ var Student = /** @class */ (function (_super) {
 var s1 = new Student("Anoosha", 21, "anooshasanugula@gmail.com", ["HTML", "CSS", "Typescript"], "Vemulawada", "Telangana", 505307);
 console.log(s1.getDetails());
 //importing getValue function from the utils
-console.log((0, utils_1.getValue)("Goldie"));
-console.log((0, utils_1.getValue)(123));
-console.log((0, utils_1.getValue)([12, 23, 34]));
-console.log((0, utils_1.getValue)(["anu", "surya", "tunnu"]));
+var stringtype = { value: "Goldie" };
+var numtype = { value: 123 };
+var arraytype = { value: [1, 2, 3, 4] };
+console.log(stringtype);
+console.log(numtype);
+console.log(arraytype);
 var C = /** @class */ (function () {
     function C(a, b) {
     }
