@@ -257,3 +257,77 @@ Employees.forEach(emp=>{
         console.log(emp.name+" is not lead");
     }
 });
+
+//Day-5 assignment
+type Fruity = {
+    colour:string;
+    vitamin?:string;
+    seeds:boolean;
+}
+type Tree={
+    name:string;
+    height:number;
+    gives_fruits?:boolean;
+    flower:string|null;
+    medicine:string|undefined|null;
+    fruit?: Fruity;
+    b?: any;
+}
+type RequiredType<Type>={
+    [P in keyof Type] -? : Type[P];
+};
+type tree1 = RequiredType<Tree> & {
+    fruit:RequiredType<Fruity>
+}; 
+// type RequiredType<Type> = {
+//     [P in keyof Type]-?: Type[P] extends object ? RequiredType<Type[P]> : Type[P];
+// };
+// type tree1 = RequiredType<Tree>;
+let an:tree1={
+    name:"ansjsj",
+    height:30,
+    flower:"rose",
+    medicine:"olo",
+    gives_fruits:true,
+    fruit:{
+        colour:"red",
+        vitamin:"D",
+        seeds:true,
+    },
+    b: 12,
+};
+
+namespace Util{
+    export function Concatenating<per1 extends Person>(p: per1):string {
+        let result = '';
+        Object.keys(p).forEach(key => {
+            const value = p[key as keyof per1];
+            if (typeof value === 'object' && value !== null) {
+                result += Concatenating(value as per1);
+            } else {
+                result =result+ `${key}: ${value}`+` `;
+            }
+        });
+        return result;
+    }
+}
+interface Person{
+    name: string;
+    email:string;
+    address: {
+        street: string;
+        city: string;
+        country: string;
+    }
+}
+const per1:Person = {
+    name: 'Anoosha',
+    email:"anoosha@gmail.com",
+    address: {
+        street: 'thippasandra',
+        city: 'banglore',
+        country: 'India'
+    }
+};
+
+console.log(Util.Concatenating(per1));

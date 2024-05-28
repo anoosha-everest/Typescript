@@ -114,14 +114,8 @@ function update_few(st_few1, st1) {
     return st1;
 }
 console.log(update_few(st_few1, st1));
-var any_type = "anoosha";
-function check_type(input) {
-    if (typeof input === "string") {
-        return "Yes";
-    }
-    return "No";
-}
-console.log(check_type(any_type));
+var checking;
+var check;
 var Employees = [];
 var emp1 = {
     name: "Goldie",
@@ -132,15 +126,15 @@ var lead1 = {
     age: 30
 };
 emp1.lead = lead1;
-var emp2 = {
-    name: "Jamuna",
-    age: 20
-};
 var lead2 = {
     name: "Chandu",
     age: 30
 };
-emp2.lead = lead2;
+var emp2 = {
+    name: "Jamuna",
+    age: 20,
+    lead: lead2
+};
 var emp3 = {
     name: "Hari",
     age: 23
@@ -172,3 +166,47 @@ Employees.forEach(function (emp) {
         console.log(emp.name + " is not lead");
     }
 });
+// type RequiredType<Type> = {
+//     [P in keyof Type]-?: Type[P] extends object ? RequiredType<Type[P]> : Type[P];
+// };
+// type tree1 = RequiredType<Tree>;
+var an = {
+    name: "ansjsj",
+    height: 30,
+    flower: "rose",
+    medicine: "olo",
+    gives_fruits: true,
+    fruit: {
+        colour: "red",
+        vitamin: "D",
+        seeds: true,
+    },
+    b: 12,
+};
+var Util;
+(function (Util) {
+    function Concatenating(p) {
+        var result = '';
+        Object.keys(p).forEach(function (key) {
+            var value = p[key];
+            if (typeof value === 'object' && value !== null) {
+                result += Concatenating(value);
+            }
+            else {
+                result = result + "".concat(key, ": ").concat(value) + " ";
+            }
+        });
+        return result;
+    }
+    Util.Concatenating = Concatenating;
+})(Util || (Util = {}));
+var per1 = {
+    name: 'Anoosha',
+    email: "anoosha@gmail.com",
+    address: {
+        street: 'thippasandra',
+        city: 'banglore',
+        country: 'India'
+    }
+};
+console.log(Util.Concatenating(per1));
