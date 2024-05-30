@@ -14,6 +14,17 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 //Day-1 assignment
 var st = "anu";
@@ -113,10 +124,12 @@ function update_few(st_few1, st1) {
     }
     return st1;
 }
-console.log(update_few(st_few1, st1));
+// console.log(update_few(st_few1,st1));
+var updated_st = __assign(__assign({}, st1), st_few1);
+console.log(updated_st);
 var checking;
 var check;
-var Employees = [];
+var Employees1 = [];
 var emp1 = {
     name: "Goldie",
     age: 21
@@ -148,14 +161,61 @@ var lead4 = {
     age: 20
 };
 emp4.lead = lead4;
-Employees.push(emp1);
-Employees.push(emp2);
-Employees.push(emp3);
-Employees.push(emp4);
-console.log(Employees);
+//   Employees.push(emp1);
+//   Employees.push(emp2);
+//   Employees.push(emp3);
+//   Employees.push(emp4);
+// console.log(Employees);
+var Employees = [
+    {
+        name: "Goldie",
+        age: 21,
+        lead: {
+            name: "Ranga",
+            age: 30,
+            lead: {
+                name: "hari",
+                age: 30,
+            },
+        },
+    },
+    {
+        name: "Jamuna",
+        age: 20,
+        lead: {
+            name: "Chandu",
+            age: 30,
+            lead: {
+                name: "Jam1",
+                age: 20,
+                lead: {
+                    name: "Chandrasheker",
+                    age: 30,
+                    lead: {
+                        name: "Jamuna",
+                        age: 20,
+                    },
+                },
+            },
+        },
+    },
+];
+// Employees.forEach(emp=>{
+//     if((emp.lead!=undefined)){
+//         if(emp.lead.name==emp.name){
+//             console.log(emp.name+" is lead");
+//         }
+//         else{
+//             console.log(emp.name+" is not lead");
+//         }
+//     }
+//     else{
+//         console.log(emp.name+" is not lead");
+//     }
+// });
 Employees.forEach(function (emp) {
-    if ((emp.lead != undefined)) {
-        if (emp.lead.name == emp.name) {
+    if ((emp.lead !== undefined)) {
+        if (recursivelyCheck(emp.lead, emp.name)) {
             console.log(emp.name + " is lead");
         }
         else {
@@ -166,6 +226,17 @@ Employees.forEach(function (emp) {
         console.log(emp.name + " is not lead");
     }
 });
+function recursivelyCheck(obj, emp) {
+    if (obj.name === emp)
+        return true;
+    else {
+        if (obj.lead !== undefined)
+            return recursivelyCheck(obj.lead, emp);
+        else {
+            return false;
+        }
+    }
+}
 // type RequiredType<Type> = {
 //     [P in keyof Type]-?: Type[P] extends object ? RequiredType<Type[P]> : Type[P];
 // };

@@ -194,7 +194,9 @@ function update_few(st_few1:few_prop,st1:Students):Students{
     return st1;
 }
 
-console.log(update_few(st_few1,st1));
+// console.log(update_few(st_few1,st1));
+let updated_st={...st1,...st_few1};
+console.log(updated_st);
 
 type type_check<T> = T extends string ?"Yes" : "No";
 let checking:type_check<string>;
@@ -205,7 +207,7 @@ let check:type_check<number>;
     age:number;
     lead?: Employee;
   }
-let Employees:Employee[]=[];
+let Employees1:Employee[]=[];
   const emp1:Employee={
     name:"Goldie",
     age:21
@@ -238,25 +240,88 @@ let Employees:Employee[]=[];
     age:20
   };
   emp4.lead=lead4;
-  Employees.push(emp1);
-  Employees.push(emp2);
-  Employees.push(emp3);
-  Employees.push(emp4);
-console.log(Employees);
+//   Employees.push(emp1);
+//   Employees.push(emp2);
+//   Employees.push(emp3);
+//   Employees.push(emp4);
+// console.log(Employees);
+let Employees:Employee[]=[
+    {
+      name: "Goldie",
+      age: 21,
+      lead: {
+        name: "Ranga",
+        age: 30,
+        lead:{
+            name: "hari",
+            age: 30,
+        },
+      },
+    },
+    {
+      name: "Jamuna",
+      age: 20,
+      lead: {
+        name: "Chandu",
+        age: 30,
+        lead: {
+          name: "Jam1",
+          age: 20,
+          lead:{
+            name: "Chandrasheker",
+            age: 30,
+            lead: {
+                name: "Jamuna",
+                age: 20,
+            },
+            },
+        },
+      },
+    },
+  ];
+// Employees.forEach(emp=>{
+//     if((emp.lead!=undefined)){
+//         if(emp.lead.name==emp.name){
+//             console.log(emp.name+" is lead");
+//         }
+//         else{
+//             console.log(emp.name+" is not lead");
+//         }
+//     }
+//     else{
+//         console.log(emp.name+" is not lead");
+//     }
+// });
 
 Employees.forEach(emp=>{
-    if((emp.lead!=undefined)){
-        if(emp.lead.name==emp.name){
-            console.log(emp.name+" is lead");
+        if((emp.lead!==undefined)){
+            if(recursivelyCheck(emp.lead,emp.name)){
+                console.log(emp.name+" is lead");
+            }
+            else{
+                console.log(emp.name+" is not lead");
+            }
         }
         else{
             console.log(emp.name+" is not lead");
         }
-    }
-    else{
-        console.log(emp.name+" is not lead");
-    }
-});
+    });
+
+    function recursivelyCheck(obj:Employee,emp:string) {
+            if(obj.name===emp)
+                return true;
+            else{
+                if(obj.lead!==undefined)
+                    return recursivelyCheck(obj.lead,emp);
+                else{
+                    return false;
+                }
+            }
+        }
+       
+      
+      
+
 
 //Day-5 assignment
 type Fruity = {
@@ -296,9 +361,10 @@ let an:tree1={
     },
     b: 12,
 };
-
+/// <reference path="./utils.ts"/>
+import {Per} from "./utils";
 namespace Util{
-    export function Concatenating<per1 extends Person>(p: per1):string {
+    export function Concatenating<per1 extends Per.Person>(p: per1):string {
         let result = '';
         Object.keys(p).forEach(key => {
             const value = p[key as keyof per1];
@@ -311,16 +377,8 @@ namespace Util{
         return result;
     }
 }
-interface Person{
-    name: string;
-    email:string;
-    address: {
-        street: string;
-        city: string;
-        country: string;
-    }
-}
-const per1:Person = {
+
+const per1:Per.Person = {
     name: 'Anoosha',
     email:"anoosha@gmail.com",
     address: {
